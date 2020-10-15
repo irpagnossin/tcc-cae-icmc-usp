@@ -1,0 +1,6 @@
+*.pickle
+*.xlsx
+*.csv
+.ipynb_checkpoints/
+__pycache__/
+img/
