@@ -1,0 +1,75 @@
+\section{Metodologia}
+
+Neste trabalho nós utilizamos técnicas de mineração de dados educacionais \cite{Baker2011} para realizar análises quantitativas sobre o dados gerados pela interação contínua dos alunos com os sistemas de informação da instituição educacional.
+Ou seja, os dados aqui utilizados não foram produzidos em resposta a uma pesquisa previamente planejada.
+
+As análises foram realizadas utilizando \foreign{softwares} gratuitos: Python 3.8 com a interface JupyterLab\footnote{\url{jupyter.org}} e as bibliotecas statsmodel\footnote{\url{statsmodels.org/}} (modelagem estatística), scikit-learn\footnote{\url{scikit-learn.org}} (\foreign{machine learning}), dentre outras auxiliares (veja o apêndice~\ref{ap:rr}).
+
+A análise e resultados deste trabalho foram desenvolvidos a partir de um conjunto de dados armazenado num arquivo no formato CSV (\foreign{comma-separated values}).
+Esse arquivo, por sua vez, foi construído aglomerando as respostas dos alunos a inúmeros formulários (Google Forms), um por aula, turma e curso, utilizando a linguagem de \foreign{script} Google Apps Script.
+Os dados originais contém identificação dos alunos e, por isso, o arquivo disponibilizado para reprodutibilidade deste trabalho (apêncie~\ref{ap:rr}) passou por uma etapa de em que apenas removemos a identificação dos alunos, trocando por ``Aluno 1'', ``Aluno 2'' \etc.
+
+\subsection{Formulários}
+
+No final de cada uma das aulas dos cursos de DA e DS, os professores divulgaram aos alunos, diretamente e pelo canal de comunicações da turma (grupo do Whatsapp), o link para um formulário do Google Forms (único para aquela aula).
+Os alunos eram incentivados, mas não obrigados, a responder.
+Cada formulário apresentava as seguintes questões:
+
+\begin{compactenum}
+	\item Email
+	
+	\item Nome
+	
+	\item\label{q:antes} ``\campo{Área}: quanto você já sabia sobre \campo{tópico}?''.
+	Escala Likert de 1 a 5.
+	Chamemos de $q_\text{antes}$ para referência futura.
+	
+	\item\label{q:depois} ``\campo{Área}: E agora depois da aula quanto você sabe sobre \campo{tópico}?''.
+	Escala Likert de 1 a 5.
+	Chamemos de $q_\text{depois}$.
+	
+	\item\label{q:relevancia} ``Relevância: O quanto você acha que o conteúdo abordado é relevante para a sua formação?''. Escala Likert de 1 (``pouco relevante'') a 5 (``muito relevante'').
+	
+	\item\label{q:ritmo} ``Ritmo: Como você classifica o ritmo da aula de hoje?''. Escala Likert de 1 (``muito lento'') a 5 (``muito rápido'').
+	
+	\item\label{q:satisfação} ``Satisfação: O quanto você está satisfeit@ com a aula de hoje?''.
+	Escala Likert de 1 (``pouco satisfeit@'') a 10 (``muito satisfeit@'')
+	
+	\item ``Se quiser fornecer algum feedback ou comentário específico use o espaço abaixo (não obrigatório)''.
+	Discursiva.
+	Não utilizada neste trabalho.
+\end{compactenum}
+
+As questões~\ref{q:antes} e \ref{q:depois} podem ser repetidas até 4 vezes (ou seja, cada aula pode apresentar até 4 tópicos), em que \campo{Área} representa a macro-componente do curso (tecnologia, negócios ou estatística) e \campo{tópico} é um texto escrito livremente pelo professor, que aborda um tópico da aula.
+Exemplos de \campo{tópico} são: ``Aplicabilidade da regressão logística'', ``Fundamentos do MySQL'' \etc (ao todo são 985 valores distintos no conjunto de dados original).
+
+\subsection{Variáveis}
+
+A variável-alvo (dependente) deste trabalho é a aprendizagem, cuja medida operacional $a$ foi definida como o valor numérico da questão \ref{q:depois} subtraído do da questão \ref{q:antes}:
+\begin{equation}\label{eq:a}
+	a := q_\text{depois} - q_\text{antes}
+\end{equation}
+
+Por exemplo, se o aluno respondeu $q_\text{antes} = 2$ para a questão \ref{q:antes} (quanto ``sabe'' antes da aula) e $q_\text{depois} = 5$ para a questão \ref{q:depois} (depois), então a aprendizagem foi de $5 - 2 = 3$.
+Desse modo, essa variável assume valores inteiros no intervalo $[-4,4]$ e, conforme \cite{Harpe2015}, pode ser interpretada como numérica.
+
+As variáveis independentes são:
+\begin{compactitem}
+	\item Relevância (questão \ref{q:relevancia}).
+	Variável categórica com cardinalidade 5.
+
+	\item Rítmo (\ref{q:ritmo}).
+	Variável categórica com cardinalidade 5.
+
+	\item Satisfação (\ref{q:satisfação}).
+	Variável numérica discreta.
+
+	\item \campo{tópico}.
+	Variável categórica (texto) com cardinalidade 985.
+\end{compactitem}
+
+A natureza de cada variável acima (numérica ou categórica) foi decidida com base nas recomendações de \cite{Harpe2015}.
+
+\subsection{Coleta dos dados}
+
+Os formulários foram apresentados entre 8/abr e 7/dez/2019 para 6 turmas de DA e 4 turmas de DS, totalizando até 255 alunos e gerando 1878 observações para DA e 1763 para DS.

@@ -1,0 +1,59 @@
+% Author: Ivan Ramos Pagnossin
+% encoding: UTF-8
+\documentclass{SBCbookchapter}
+
+	\usepackage[utf8]{inputenc}
+	\usepackage{ae}
+	\usepackage[brazil]{babel}  
+	\usepackage{graphicx}\graphicspath{{img/}}
+	\usepackage{booktabs}
+	\usepackage{paralist}
+	\usepackage{xcolor}
+	\usepackage{url}
+	\usepackage{amsmath}
+	\usepackage{amssymb}
+	\usepackage{irpagnossin-basic}
+	\usepackage{fancyhdr}
+	\usepackage{calc}
+	\usepackage{tikz}
+	\usetikzlibrary{calc}
+
+	\pagestyle{fancy}
+	\fancyfoot[L]{}
+	\fancyfoot[C]{}
+	\fancyfoot[R]{\thepage}
+
+	\title{A importância da expectativa para a adoção de currículos baseados em competências em cursos livres de ciência de dados}
+
+	\author{I. R. Pagnossin\footnote{Pós-Graduando(a) em Computação Aplicada à Educação, USP, irapgnossin@usp.br}, S. Isotani\footnote{Seiji Isotani, USP, sisotani@icmc.usp.br}, B. E. Penteado\footnote{Bruno Elias Penteado, USP, brunopenteado@usp.br}}
+
+	\input{mydefs}
+
+\begin{document}
+	%-- Capa
+	\maketitle
+
+	\begin{tikzpicture}[remember picture, overlay]
+      \node at ($(current page.north) - (0mm,10mm)$) {\includegraphics[width=16cm]{img/cabecalho}};
+    \end{tikzpicture}
+	
+	\input{resumo}
+	\vfill
+	\pagebreak
+
+	%-- Corpo
+	\input{introducao}
+	\input{referencial-teorico}
+	\input{hipoteses}
+	\input{metodologia}
+	\input{resultados}
+	\input{conclusao}
+
+	%-- Referências
+	\bibliographystyle{abntex2-num}
+	\bibliography{referencias}
+
+	%-- Apêndices
+	\appendix
+	\input{apendice-A}
+\end{document}

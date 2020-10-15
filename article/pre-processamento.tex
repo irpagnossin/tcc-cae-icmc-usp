@@ -1,0 +1,46 @@
+\subsection{Pré-processamento}
+
+A primeira etapa na análise de dados foi transformar o arquivo dos dados para o padrão \foreign{tidy-data} \cite{Wicham2014}, onde cada linha representa a resposta de um aluno para cada um dos até 4 tópicos abordados numa aula.
+A figura~\ref{fig:dataset-raw} ilustra as primeiras linhas desse arquivo.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{tidy-sample}
+	\caption{As primeiras linhas do conjunto de dados utilizados neste trabalho.}
+	\label{fig:dataset-raw}
+\end{figure}
+
+Note que as duas primeiras linhas representam as respostas do ``Aluno 25'' ao formulário aplicado na aula de 18/abr/2019 da turma S2019. Nessa aula dois tópicos foram abordados: ``aplicações de clusterização de dados'' e ``MeanShift e DBSCAN''. No primeiro deles a aprendizagem foi de 1 unidade (última coluna) e, no segundo, de 2 unidades.
+
+Em vista de cada formulário poder apresentar até quatro tópicos (dois neste exemplo), as informações de satisfação (\foreign{satisfaction}), rítmo (\foreign{pace}) e relevância (\foreign{relevance}) estão duplicados. Isso significa que, ao analisarmos essas variáveis, precisamos remover essas duplicidades.
+Fizemos isso através de uma amostragem que selecionava, aleatoriamente, \emph{uma} linha para cada tupla (curso, turma, aula, aluno).
+Por exemplo, se selecionássemos a primeira linha, certamente ignoraríamos a segunda linha.
+
+Esse arquivo foi posteriormente transformado:
+\begin{compactitem}
+	\item Criamos uma coluna para identificar o curso (\foreign{course}), com valores DA ou DS, a partir da turma: aquelas que iniciam com ``A'' são de DA; as com ``S'', são DS.
+	
+	\item A turma foi trocada por um valor numérico sequencial arbitrário.
+	
+	\item As colunas de satisfação, rítmo e relevância foram normalizadas no intervalo $[0,10]$, apenas por simplicidade.
+
+	\item Criamos a coluna \foreign{component}, que mapeia o tópico para uma hierarquia \foreign{ad-hoc} de componentes de cada curso.
+	Por exemplo, o tópico ``Construção e execução de queries'' foi mapeado para o componente ``SQL/\textbf{Ferramenta}'' (DA), enquanto ``ARIMA. SARIMAX e Prophet'' foi mapeado para ``Séries temporais/\textbf{Algoritmo}'' (DS).
+	O mapeamento foi feito manualmente para os 985 tópicos presentes.
+
+	\item Criamos a coluna \foreign{tool} a partir da coluna \foreign{component} para identificar se aquela resposta refere-se a um componente de ferramenta.
+	O exemplo de mapeamento acima torna evidente como essa identificação foi feita.
+	Variável categórica booleana: verdadeira para aulas sobre ferramentas.
+	
+	\item Criamos a coluna \foreign{algorithm} a partir da coluna \foreign{component} para identificar se aquela resposta refere-se a um componente de algoritmo.
+	Variável categórica booleana: verdadeira para aulas sobre algoritmos.
+\end{compactitem}
+
+A figura~\ref{fig:dataset} ilustra o conjunto de dados após esse pré-processamento e já pronto para a análise.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{tidy-sample-2}
+	\caption{O conjunto de dados, pronto para a análise.}
+	\label{fig:dataset}
+\end{figure}
