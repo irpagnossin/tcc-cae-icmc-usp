@@ -5,7 +5,7 @@
 \subsubsection{Hipótese 1}
 
 Primeiramente vamos avaliar a hipótese~\ref{h:1}.
-O conjunto de dados já contém a informação de que um dado componente refere-se a uma ferramenta ou não (coluna \foreign{tool} na figura~\ref{fig:dataset}).
+O conjunto de dados já contém a informação de que um dado componente refere-se a uma ferramenta ou não (coluna \foreign{tool} na Figura~\ref{fig:dataset}).
 Assim, podemos separar o conjunto de dados em duas partes: a primeira é aquela composta pelos componentes referentes a ferramentas e a segunda, o complemento.
 Existe, já há muito tempo, uma ampla discussão na literatura sobre a interpretação da escala Likert como variáveis categóricas ou se elas podem ser interpretadas como numéricas.
 
@@ -78,9 +78,9 @@ Isso passa por planejar as aulas de modo que sempre fique evidente a relação c
 \subsubsection{Hipótese 2}
 
 A verificação da hipótese 2 é similar à da primeira, exceto que dessa vez segmentamos os dados em aulas que envolvem explicitamente algoritmos e aulas mais abstratas.
-Na seção~\ref{sec:resultados} nós mostramos como essas aulas foram identificadas, restando agora executar a segmentação e o teste t.
+Na Seção~\ref{sec:resultados} nós mostramos como essas aulas foram identificadas, restando agora executar a segmentação e o teste t.
 
-A tabela~\ref{tab:hipotese2-subsets} apresenta os dados dos dois sub-conjuntos de dados obtidos ao segmentar DS por algoritmo. Note que a incerteza na média da segmentação ``sim'' envolve a média da segmentação ``não''.
+A Tabela~\ref{tab:hipotese2-subsets} apresenta os dados dos dois sub-conjuntos de dados obtidos ao segmentar DS por algoritmo. Note que a incerteza na média da segmentação ``sim'' envolve a média da segmentação ``não''.
 O desvio-padrão também é igual, mostrando que as distribuições são indistinguíveis por esses parâmetros.
 Isso é evidenciado pelo teste t, que demonstra não haver diferença entre as médias.
 Logo, \emph{não} temos dados suficientes para argumentar em favor da hipótese 2.
@@ -119,12 +119,12 @@ Ou seja, a presença ou não de algoritmo \emph{não} afeta a aprendizagem.
 
 \subsubsection{Hipótese 3}
 
-Agora voltamos nossa atenção para a possível relação entre a aprendizagem e a satisfação, rítmo e relevância reportados pelo aluno.
+Agora voltamos nossa atenção para a possível relação entre a aprendizagem e a satisfação, ritmo e relevância reportados pelo aluno.
 
 A teoria do valor da expectativa propõe que a motivação é uma função do produto da X por Y.
 O argumento aqui é, então, que esses atributos afetam a aprendizagem.
 O modelo de regressão mais simples é o linear e uma análise das correlações entre as variáveis (abaixo) de fato mostra haver correlação de Person significativa.
-Porém, ao avaliar os gráficos visualmente, não é possível identificar alguma relação linear evidente, conforme podemos ver na figura~\ref{fig:bubble-plots}.
+Porém, ao avaliar os gráficos visualmente, não é possível identificar alguma relação linear evidente, conforme podemos ver na Figura~\ref{fig:bubble-plots}.
 
 \begin{table}
 	\centering
@@ -144,14 +144,14 @@ Porém, ao avaliar os gráficos visualmente, não é possível identificar algum
 	\end{tabular}
 \end{table}
 
-Então experimentamos outros algoritmos de regressão, conforme citados na tabela~\ref{tab:reg-ds-1}.
+Então experimentamos outros algoritmos de regressão, conforme citados na Tabela~\ref{tab:reg-ds-1}.
 O melhor índice de determinação obtido foi $R^2 \approx 0,193$ para o modelo XGBoost, composto por um conjunto de árvores de decisão simples\footnote{Veja, por exemplo, \url{xgboost.readthedocs.io/en/latest/tutorials/model.html}.}.
 Isso significa que nosso melhor modelo é capaz de explicar apenas 19\% das variações na aprendizagem, a partir dos preditores propostos.
 Embora seja baixo, podemos argumentar --- e isso pode ser vislumbrado nos gráficos --- que a aprendizagem sofre maior influência de outros parâmetros mais importantes, como a metodologia de aprendizagem, a didática do professor \etc.
 
 
 Agora que sabemos que o modelos XGBoost é melhor, podemos experimentar variar os preditores.
-Por exemplo, efetuamos a regressão considerando como variáveis independentes as combinações de relevância (categórica), rítmo (categõrica) e satisfação (numérica). Nesse caso, a métrica mais relevante é o $\bar R^2$, que considera a quantidade de preditores.
+Por exemplo, efetuamos a regressão considerando como variáveis independentes as combinações de relevância (categórica), ritmo (categõrica) e satisfação (numérica). Nesse caso, a métrica mais relevante é o $\bar R^2$, que considera a quantidade de preditores.
 
 \begin{table}
 	\centering
@@ -173,7 +173,7 @@ Por exemplo, efetuamos a regressão considerando como variáveis independentes a
 \end{table}
 
 Ou seja, apesar de termos três possíveis preditores, a regressão utilizando apeans a satisfação é a mais significativa, pois possui maior $\bar R^2$.
-Ainda que os três primeiros modelos na tabela~\ref{tab:reg-ds-2} apresentem o mesmo valor de $R^2$, o que significa que todos eles tem o mesmo poder de prever a aprendizagem, o fato de $\bar R^2$ ser maior para satisfação, significa que é um modelo melhor (além de ser mais simples, pois requer apenas a satisfação).
+Ainda que os três primeiros modelos na Tabela~\ref{tab:reg-ds-2} apresentem o mesmo valor de $R^2$, o que significa que todos eles tem o mesmo poder de prever a aprendizagem, o fato de $\bar R^2$ ser maior para satisfação, significa que é um modelo melhor (além de ser mais simples, pois requer apenas a satisfação).
 
 
 
@@ -219,4 +219,4 @@ A mesma análise pode ser feita para Data Analytics
 \end{table}
 
 Note que o segundo melhor modelo, tanto para DA como DS, envolve os dois preditores complementares.
-Isso sugere que satisfação é equivalente ao par relevância e rítmo.
+Isso sugere que satisfação é equivalente ao par relevância e ritmo.
