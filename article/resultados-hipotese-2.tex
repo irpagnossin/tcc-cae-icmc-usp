@@ -1,4 +1,5 @@
 \subsection{Hipótese 2}
+\label{sec:resultados-hipotese-2}
 
 A verificação da hipótese 2 é similar à primeira, exceto que dessa vez segmentamos os dados em aulas que envolvem explicitamente algoritmos ou não.
 Na Seção~\ref{sec:resultados} nós mostramos como essas aulas foram identificadas (coluna \foreign{algorithm} do conjunto de dados), restando agora executar a segmentação e o teste t.
@@ -6,11 +7,37 @@ Na Seção~\ref{sec:resultados} nós mostramos como essas aulas foram identifica
 \begin{figure}
 	\centering
 	\includegraphics[width=0.45\textwidth]{ds-boxplot-by-algorithm}
-	\caption{Distribuição da aprendizagem no cursos de DS para as aulas de algoritmos (\foreign{true} no eixo vertical) e as demais. Os triângulos verdes indicam a média amostral.}
+	\caption{Distribuição da aprendizagem nos cursos de DS para as aulas de algoritmos (\foreign{true} no eixo vertical) e as demais.}
 	\label{fig:dist-hipotese-2}
 \end{figure}
 
 A Figura~\ref{fig:dist-hipotese-2} e a Tabela~\ref{tab:dist-hipotese-2} apresentam a distribuição da aprendizagem das aulas de ferramentas e das demais do curso de DS.
+
+\begin{table}
+	\centering
+	\begin{minipage}[t]{0.46\textwidth}
+		\caption{Tamanho da amostra (\#), média e desvio-padrão da aprendizagem em DS.}
+		\label{tab:dist-hipotese-2}
+		\begin{tabular}{lrrr}
+			\toprule
+			Algoritmo? & \# & $\bar{a}$ & $s_a$ \\
+			\midrule
+			Sim &  110 &  $1,3\pm 0,2$ & 0,88 \\
+			Não & 1653 & $1,25\pm 0,04$ & 0,88 \\
+			\bottomrule
+		\end{tabular}
+	\end{minipage}\hfill
+	\begin{minipage}[t]{0.46\textwidth}
+		\caption{Estatísticas de teste da hipótese 2.}
+		\begin{tabular}{lcc}
+		\toprule
+		Curso & Valor $p$   & Estatística $t$ \\
+		\midrule
+		DS    & $0,41$      & $0,83$ \\ 
+		\bottomrule
+		\end{tabular}
+	\end{minipage}
+\end{table}
 
 O curso de DA não tem ênfase em algoritmos.
 Por isso não propusemos fazer teste análogo nele.
@@ -21,36 +48,10 @@ Além disso, os desvios-padrão são similares.
 Isso evidencia que as duas amostras têm origem na mesma população.
 Porém, apenas o teste t nos permitirá afirmar.
 
-\begin{table}
-	\centering
-	\caption{Tamanho da amostra (\#), média (e erro padrão) e desvio-padrão das aulas de algoritmos e demais do curso de DS.}
-	\label{tab:dist-hipotese-2}
-	\begin{tabular}{lrrr}
-		\toprule
-		Algoritmo? & \# & $\bar{a}$ & $s_a$ \\
-		\midrule
-		Sim &  110 &  $1,3\pm 0,2$ & 0,88 \\
-		Não & 1653 & $1,25\pm 0,04$ & 0,88 \\
-		\bottomrule
-	\end{tabular}
-\end{table}
-
-\begin{table}
-	\centering
-	\caption{Resultado do teste t no curso de DS}
-	\begin{tabular}{lcc}
-	\toprule
-	Curso & Valor $p$   & Estatística $t$ \\
-	\midrule
-	DS    & $0,41$      & $0,83$ \\ 
-	\bottomrule
-	\end{tabular}
-\end{table}
-
 Ao efetuarmos o teste de hipótese, obtivemos valor-$p$ de 41\%.
 Ou seja, a probabilidade de observarmos a média $1,3 \pm 0,2$ numa amostra de uma população com média $1,25 \pm 0,04$ é de 41\%, acima do nível de significância de 5\% assumido.
 Logo, podemos afirmar que as duas amostras advém da mesma população.
 Consequentemente, \emph{não} há diferença de aprendizagem entre as aulas de algoritmos e as demais.
 
-Utilizando novamente a teoria do valor da expectativa para interpretar esse resultado, isso significa que a intensidade do vínculo das componentes relacionadas a algoritmos com a valência ``obter um posto de trabalho'' tem a mesma intensidade do vínculo dessa mesma valência com as demais aulas.
+Utilizando novamente a teoria do valor da expectativa para interpretar esse resultado, isso significa que a instrumentalidade das componentes relacionadas a algoritmos é equivalente àquela associada às demais aulas.
 Ou seja, o aluno não vê distinção entre essas aulas e, com isso, apresenta o mesmo nível de motivação para aprender.
