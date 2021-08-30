@@ -22,7 +22,7 @@ Argumentamos que uma abordagem classificatória também é possível, desde que 
 Porém isso ficará para trabalhos futuros.
 
 O modelo de regressão mais simples é o linear.
-Porém, uma análise visual dos gráficos de aprendizagem em função de cada um dos preditores não torna evidente qualquer possível relação linear (fig.~\ref{fig:bubble-plots}).
+Porém, uma análise visual dos gráficos de aprendizagem em função de cada um dos preditores não torna evidente qualquer possível relação linear (Figura~\ref{fig:bubble-plots}).
 Então experimentamos outros algoritmos de regressão, conforme apresentado na Tabela~\ref{tab:reg-ds-1}.
 
 \begin{table}
@@ -89,9 +89,7 @@ Em seguida, aplicamos cada um dos algoritmos a 70\% dos exemplos no conjunto de 
 
 O melhor índice de determinação, calculado sobre os 30\% exemplos restantes (conjunto de teste), foi $R^2 \approx 0,193$ para o modelo XGBoost, composto por um conjunto de árvores de decisão simples \cite{Friedman2001}.
 Isso significa que nosso melhor modelo é capaz de explicar apenas 19\% das variações na aprendizagem, a partir dos preditores propostos.
-Embora seja baixo, podemos argumentar  que a aprendizagem sofre maior influência de outros parâmetros mais importantes, que não temos acesso aqui, como a metodologia de aprendizagem, a qualidade das atividades e conteúdo proposto \etc.
-
-
+Embora seja baixo, podemos argumentar  que a aprendizagem sofre maior influência de outros parâmetros mais importantes, que não temos acesso aqui, como a metodologia de aprendizagem, a qualidade das atividades e conteúdo proposto, conhecimento prévio e/ou formação do estudante \etc.
 
 Agora que sabemos que o modelo XGBoost obteve melhor desempenho, podemos experimentar variar os preditores: efetuamos a regressão considerando como preditores as combinações de um, dois e três preditores.
 Nesse caso, a métrica mais relevante é o $\bar R^2$, que pondera o índice de determinação pela quantidade de preditores.

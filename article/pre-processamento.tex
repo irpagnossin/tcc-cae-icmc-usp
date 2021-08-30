@@ -29,12 +29,11 @@ Esse arquivo foi posteriormente transformado:
 	Por exemplo, o tópico ``Construção e execução de queries'' foi mapeado para o componente ``SQL/\textbf{Ferramenta}'' (DA), enquanto ``ARIMA. SARIMAX e Prophet'' foi mapeado para ``Séries temporais/\textbf{Algoritmo}'' (DS).
 	O mapeamento foi feito manualmente para os 985 tópicos presentes.
 
-	\item Criamos a coluna \foreign{tool} a partir da coluna \foreign{component} para identificar se aquela resposta refere-se a um componente de ferramenta.
-	O exemplo de mapeamento acima torna evidente como essa identificação foi feita.
-	Variável categórica booleana: verdadeira para aulas sobre ferramentas.
+	\item Criamos a coluna \foreign{tool}, variável categórica booleana, para indicar se a aula contém algum componente de ferramenta.
+	Isso foi feito a partir da coluna \foreign{component}: se ela contém ``Ferramenta'', então o valor dessa variável é ``verdadeiro''; se não, é ``falso'' (veja grifos no item anterior).
 	
-	\item Criamos a coluna \foreign{algorithm} a partir da coluna \foreign{component} para identificar se aquela resposta refere-se a um componente de algoritmo.
-	Variável categórica booleana: verdadeira para aulas sobre algoritmos.
+	\item Criamos a coluna \foreign{algorithm}, variável categórica booleana, para indicar se a aula contém algum componente de algoritmo.
+	Isso foi feito de maneira similar ao item anterior, também a partir da coluna \foreign{component}.
 \end{compactitem}
 
 A Tabela~\ref{fig:dataset} ilustra o conjunto de dados após esse pré-processamento e já pronto para a análise.

@@ -3,17 +3,19 @@
 
 Nós utilizamos mineração de dados educacionais \cite{Baker2011} para realizar análises quantitativas sobre o dados gerados pela interação contínua dos alunos com os sistemas de informação da instituição educacional.
 Ou seja, os dados aqui utilizados não foram produzidos em resposta a uma pesquisa previamente planejada.
+É importante ter isso em mente porque algumas das limitações deste trabalho decorrem disso.
 
-As análises foram realizadas utilizando \foreign{softwares} gratuitos: Python 3.8 com a interface JupyterLab e as bibliotecas statsmodel (modelagem estatística), scikit-learn (\foreign{machine learning}), dentre outras.
 
-A análise e resultados deste trabalho foram desenvolvidos a partir de um conjunto de dados armazenado num arquivo no formato CSV (\foreign{comma-separated values}).
-Esse arquivo, por sua vez, foi construído aglomerando as respostas dos alunos a inúmeros formulários (Google Forms), um por aula, turma e curso, utilizando a linguagem de \foreign{script} Google Apps Script.
-Os dados originais contêm identificação dos alunos e, por isso, o arquivo disponibilizado para reprodutibilidade deste trabalho (apêncie~\ref{ap:rr}) passou por uma etapa em que apenas removemos a identificação dos alunos, trocando por ``Aluno 1'', ``Aluno 2'' \etc.
+\subsection{Coleta dos dados}
+
+No final de cada uma das aulas dos cursos de DA e DS, os professores divulgaram aos alunos, diretamente e pelo canal de comunicações da turma (grupo do Whatsapp), o link para um formulário do Google Forms único para aquela aula (seção~\ref{sec:formularios}).
+Os alunos eram incentivados a responder, sem supervisão nem obrigatoriedade.
+
+Os formulários foram aplicados entre 8/abr e 7/dez/2019 em 6 turmas de DA e 4 turmas de DS, totalizando até 255 alunos e gerando 1878 observações para DA e 1763 para DS.
 
 \subsection{Formulários}
+\label{sec:formularios}
 
-No final de cada uma das aulas dos cursos de DA e DS, os professores divulgaram aos alunos, diretamente e pelo canal de comunicações da turma (grupo do Whatsapp), o link para um formulário do Google Forms (único para aquela aula).
-Os alunos eram incentivados, mas não obrigados, a responder.
 Cada formulário apresentava as seguintes questões:
 
 \begin{compactenum}
@@ -23,11 +25,11 @@ Cada formulário apresentava as seguintes questões:
 	
 	\item\label{q:antes} ``\campo{Área}: quanto você já sabia sobre \campo{tópico}?''.
 	Escala Likert de 1 a 5.
-	Chamemos de $q_\text{antes}$ para referência futura.
+	Chamaremos essa variável de $q_\text{antes}$ para referência futura.
 	
 	\item\label{q:depois} ``\campo{Área}: E agora depois da aula quanto você sabe sobre \campo{tópico}?''.
 	Escala Likert de 1 a 5.
-	Chamemos de $q_\text{depois}$.
+	Chamaremos essa variável de $q_\text{depois}$.
 	
 	\item\label{q:relevancia} ``Relevância: O quanto você acha que o conteúdo abordado é relevante para a sua formação?''. Escala Likert de 1 (``pouco relevante'') a 5 (``muito relevante'').
 	
@@ -51,7 +53,7 @@ A variável-alvo (dependente) deste trabalho é a aprendizagem, cuja medida oper
 	a := q_\text{depois} - q_\text{antes}
 \end{equation}
 
-Por exemplo, se o aluno respondeu $q_\text{antes} = 2$ para a questão \ref{q:antes} (quanto ``sabe'' antes da aula) e $q_\text{depois} = 5$ para a questão \ref{q:depois} (depois), então a aprendizagem foi de $5 - 2 = 3$.
+Por exemplo, se o aluno respondeu $q_\text{antes} = 2$ para a questão \ref{q:antes} (quanto ``sabe'' antes da aula) e $q_\text{depois} = 5$ para a questão \ref{q:depois} (depois), então a aprendizagem foi de $a = 5 - 2 = 3$.
 Desse modo, essa variável assume valores inteiros no intervalo $[-4,4]$ e, conforme \cite{Harpe2015}, pode ser interpretada como numérica.
 
 As variáveis independentes são:
@@ -71,6 +73,13 @@ As variáveis independentes são:
 
 A natureza de cada variável acima (numérica ou categórica) foi decidida com base nas recomendações de \cite{Harpe2015}.
 
-\subsection{Coleta dos dados}
+\section{Conjunto de dados}
 
-Os formulários foram apresentados entre 8/abr e 7/dez/2019 para 6 turmas de DA e 4 turmas de DS, totalizando até 255 alunos e gerando 1878 observações para DA e 1763 para DS.
+A análise e resultados deste trabalho foram desenvolvidos a partir de um conjunto de dados armazenado num arquivo no formato CSV (\foreign{comma-separated values}).
+Esse arquivo, por sua vez, foi construído aglomerando as respostas dos alunos aos inúmeros formulários aplicados, um por aula, turma e curso, utilizando a linguagem de \foreign{script} Google Apps Script.
+
+Os dados originais contêm identificação dos alunos e, por isso, o arquivo disponibilizado para reprodutibilidade deste trabalho (apêncie~\ref{ap:rr}) passou por uma etapa de preprocessamento em que apenas removemos a identificação dos alunos, trocando por ``Aluno 1'', ``Aluno 2'' \etc.
+
+\section{Ferramentas de análise}
+
+A análise foi realizada utilizando \foreign{softwares} gratuitos: Python 3.8 com a interface JupyterLab e as bibliotecas Pandas (manipulação de dados), statsmodel (modelagem estatística), scikit-learn (\foreign{machine learning}), dentre outras.
